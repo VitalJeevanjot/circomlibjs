@@ -1,14 +1,14 @@
 import { getCurveFromName, Scalar }  from "ffjavascript";
 
 export default async function buildBabyJub() {
-    const bn128 = await getCurveFromName("bn128", true);
-    return new BabyJub(bn128.Fr);
+    const bls12381 = await getCurveFromName("BLS12381", true);
+    return new BabyJub(bls12381.Fr);
 }
 
 class BabyJub {
     constructor(F) {
         this.F = F;
-        this.p = Scalar.fromString("21888242871839275222246405745257275088548364400416034343698204186575808495617");
+        this.p = Scalar.fromString("52435875175126190479447740508185965837690552500527637822603658699938581184513");
         this.pm1d2 = Scalar.div(Scalar.sub(this.p, Scalar.e(1)),  Scalar.e(2));
 
         this.Generator = [
